@@ -2,22 +2,22 @@
 
 > Real estate management system (DBS400s Assignment 2)
 
-## Build Setup
+## Setup
 
 set envrioment variable 'mysql_password' to the password for your root mysql user.
 
 ### Prerequisites
 
 PHP > 7
+
 MySQL
 
+# start PHP application server
+
 ```bash
-# start PHP application server at localhost:5000
 php -S localhost:5000
-# run create script
-??
-# run install script
-??
-
-
 ```
+
+# run create script
+
+http://localhost:5000/create/database.php
