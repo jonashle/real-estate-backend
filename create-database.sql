@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 10, 2019 at 06:39 PM
+-- Generation Time: May 11, 2019 at 03:14 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -22,18 +22,18 @@ SET time_zone = "+00:00";
 -- Database: `real_estate`
 --
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address`
+--
+
 
 DROP DATABASE IF EXISTS `real_estate`;
 CREATE DATABASE IF NOT EXISTS `real_estate`;
 
 USE `real_estate`;
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `address`
---
 
 CREATE TABLE `address` (
   `Address_ID` int(11) NOT NULL,
@@ -303,17 +303,18 @@ INSERT INTO `buyer` (`Buyer_ID`, `Person_Person_ID`) VALUES
 
 CREATE TABLE `city` (
   `City_ID` int(11) NOT NULL,
-  `City_Name` varchar(45) DEFAULT NULL
+  `City_Name` varchar(45) DEFAULT NULL,
+  `Country_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `city`
 --
 
-INSERT INTO `city` (`City_ID`, `City_Name`) VALUES
-(1, 'Cape Town'),
-(2, 'Paarl'),
-(3, 'Stellenbosch');
+INSERT INTO `city` (`City_ID`, `City_Name`, `Country_ID`) VALUES
+(1, 'Cape Town', 1),
+(2, 'Paarl', 1),
+(3, 'Stellenbosch', 1);
 
 -- --------------------------------------------------------
 
@@ -622,10 +623,10 @@ INSERT INTO `propertyphoto` (`Property_Prop_ID`, `Photo_Path`) VALUES
 (1, '/photos/TigerWaterfront/185742210.jpg'),
 (1, '/photos/TigerWaterfront/194689370.jpg'),
 (1, '/photos/TigerWaterfront/194689575.jpg'),
-(101, '/photos/FirstHouse WestcampVilla/167497237.jpg'),
-(101, '/photos/FirstHouse WestcampVilla/167497263.jpg'),
-(101, '/photos/FirstHouse WestcampVilla/167497292.jpg'),
-(101, '/photos/FirstHouse WestcampVilla/167497303.jpg'),
+(101, '/photos/FirstHouseWestcampVilla/167497237.jpg'),
+(101, '/photos/FirstHouseWestcampVilla/167497263.jpg'),
+(101, '/photos/FirstHouseWestcampVilla/167497292.jpg'),
+(101, '/photos/FirstHouseWestcampVilla/167497303.jpg'),
 (102, '/photos/AshbyManor/115271712.jpg'),
 (102, '/photos/AshbyManor/138061763.jpg'),
 (102, '/photos/AshbyManor/175800834.jpg'),
@@ -927,7 +928,8 @@ ALTER TABLE `buyer`
 --
 ALTER TABLE `city`
   ADD PRIMARY KEY (`City_ID`),
-  ADD UNIQUE KEY `City_Name` (`City_Name`);
+  ADD UNIQUE KEY `City_Name` (`City_Name`),
+  ADD KEY `fk_country_id` (`Country_ID`);
 
 --
 -- Indexes for table `country`
@@ -1095,6 +1097,12 @@ ALTER TABLE `available`
 --
 ALTER TABLE `buyer`
   ADD CONSTRAINT `fk_Buyer_Person1` FOREIGN KEY (`Person_Person_ID`) REFERENCES `person` (`Person_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `city`
+--
+ALTER TABLE `city`
+  ADD CONSTRAINT `fk_country_id` FOREIGN KEY (`Country_ID`) REFERENCES `country` (`Country_ID`);
 
 --
 -- Constraints for table `person`
