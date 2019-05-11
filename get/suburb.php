@@ -7,18 +7,34 @@ header("Content-Type: application/json; charset=UTF-8");
 
 include("../connection.php");
 
-$sql = "SELECT * FROM suburb";
+// $sql = "SELECT * FROM suburb";
+$sql = "SELECT * FROM `suburb`
+join city on city.City_ID = suburb.City_ID
+join country on city.Country_ID = country.Country_ID";
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
 	while($arrayresult = mysqli_fetch_array($result)) {
-       $myArray[] = array(
-                        "id"=>$arrayresult['Suburb_ID'],
-			"name"=>$arrayresult['Suburb_Name'],
-			"zip"=>$arrayresult['Suburb_ZIP'],
 
-                                           );
+        $country = array(
+            "id"=>$arrayresult['Country_ID'],
+            "name"=>$arrayresult['Country_Name'],
+        );
+
+        $city = array(
+            "id"=>$arrayresult['City_ID'],
+            "name"=>$arrayresult['City_Name'],
+            "country"=> $country
+        );
+
+       $myArray[] = array(
+            "id"=>$arrayresult['Suburb_ID'],
+            "name"=>$arrayresult['Suburb_Name'],
+            "zip"=>$arrayresult['Suburb_ZIP'],
+            "city" => $city
+        );
     }
 	// set response code - 200 OK
     http_response_code(200);

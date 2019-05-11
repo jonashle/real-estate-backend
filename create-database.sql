@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 11, 2019 at 03:14 PM
+-- Generation Time: May 11, 2019 at 06:25 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `real_estate`
 --
+CREATE DATABASE IF NOT EXISTS `real_estate` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `real_estate`;
 
 -- --------------------------------------------------------
 
@@ -28,13 +30,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `address`
 --
 
-
-DROP DATABASE IF EXISTS `real_estate`;
-CREATE DATABASE IF NOT EXISTS `real_estate`;
-
-USE `real_estate`;
-
-
+DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
   `Address_ID` int(11) NOT NULL,
   `Street_Street_ID` int(11) NOT NULL,
@@ -158,6 +154,7 @@ INSERT INTO `address` (`Address_ID`, `Street_Street_ID`, `Suburb_Suburb_ID`, `Ci
 -- Table structure for table `agent`
 --
 
+DROP TABLE IF EXISTS `agent`;
 CREATE TABLE `agent` (
   `Agent_ID` int(11) NOT NULL,
   `Person_Person_ID` int(11) NOT NULL
@@ -186,6 +183,7 @@ INSERT INTO `agent` (`Agent_ID`, `Person_Person_ID`) VALUES
 -- Table structure for table `available`
 --
 
+DROP TABLE IF EXISTS `available`;
 CREATE TABLE `available` (
   `Avail_ID` int(11) NOT NULL,
   `Avail_ListingDate` date DEFAULT NULL,
@@ -224,6 +222,7 @@ INSERT INTO `available` (`Avail_ID`, `Avail_ListingDate`, `Avail_ListingPrice`, 
 -- Table structure for table `buyer`
 --
 
+DROP TABLE IF EXISTS `buyer`;
 CREATE TABLE `buyer` (
   `Buyer_ID` int(11) NOT NULL,
   `Person_Person_ID` int(11) NOT NULL
@@ -301,6 +300,7 @@ INSERT INTO `buyer` (`Buyer_ID`, `Person_Person_ID`) VALUES
 -- Table structure for table `city`
 --
 
+DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
   `City_ID` int(11) NOT NULL,
   `City_Name` varchar(45) DEFAULT NULL,
@@ -314,7 +314,8 @@ CREATE TABLE `city` (
 INSERT INTO `city` (`City_ID`, `City_Name`, `Country_ID`) VALUES
 (1, 'Cape Town', 1),
 (2, 'Paarl', 1),
-(3, 'Stellenbosch', 1);
+(3, 'Stellenbosch', 1),
+(15, 'Durban', 1);
 
 -- --------------------------------------------------------
 
@@ -322,6 +323,7 @@ INSERT INTO `city` (`City_ID`, `City_Name`, `Country_ID`) VALUES
 -- Table structure for table `country`
 --
 
+DROP TABLE IF EXISTS `country`;
 CREATE TABLE `country` (
   `Country_ID` int(11) NOT NULL,
   `Country_Name` varchar(45) DEFAULT NULL
@@ -341,6 +343,7 @@ INSERT INTO `country` (`Country_ID`, `Country_Name`) VALUES
 -- Table structure for table `person`
 --
 
+DROP TABLE IF EXISTS `person`;
 CREATE TABLE `person` (
   `Person_ID` int(11) NOT NULL,
   `Address_Address_ID` int(11) NOT NULL,
@@ -464,6 +467,7 @@ INSERT INTO `person` (`Person_ID`, `Address_Address_ID`, `Person_Firstname`, `Pe
 -- Table structure for table `property`
 --
 
+DROP TABLE IF EXISTS `property`;
 CREATE TABLE `property` (
   `Prop_ID` int(11) NOT NULL,
   `Prop_Description` varchar(45) DEFAULT NULL,
@@ -588,6 +592,7 @@ INSERT INTO `property` (`Prop_ID`, `Prop_Description`, `Prop_Bedrooms`, `Prop_Ba
 -- Stand-in structure for view `propertyDetails`
 -- (See below for the actual view)
 --
+DROP VIEW IF EXISTS `propertyDetails`;
 CREATE TABLE `propertyDetails` (
 `Prop_ID` int(11)
 ,`Prop_Description` varchar(45)
@@ -609,6 +614,7 @@ CREATE TABLE `propertyDetails` (
 -- Table structure for table `propertyphoto`
 --
 
+DROP TABLE IF EXISTS `propertyphoto`;
 CREATE TABLE `propertyphoto` (
   `Property_Prop_ID` int(11) NOT NULL,
   `Photo_Path` varchar(200) NOT NULL
@@ -638,6 +644,7 @@ INSERT INTO `propertyphoto` (`Property_Prop_ID`, `Photo_Path`) VALUES
 -- Table structure for table `sales`
 --
 
+DROP TABLE IF EXISTS `sales`;
 CREATE TABLE `sales` (
   `Sale_ID` int(11) NOT NULL,
   `Agent_Agent_ID` int(11) NOT NULL,
@@ -686,6 +693,7 @@ INSERT INTO `sales` (`Sale_ID`, `Agent_Agent_ID`, `Buyer_Buyer_ID`, `Property_Pr
 -- Table structure for table `seller`
 --
 
+DROP TABLE IF EXISTS `seller`;
 CREATE TABLE `seller` (
   `Seller_ID` int(11) NOT NULL,
   `Person_Person_ID` int(11) NOT NULL
@@ -733,6 +741,7 @@ INSERT INTO `seller` (`Seller_ID`, `Person_Person_ID`) VALUES
 -- Table structure for table `street`
 --
 
+DROP TABLE IF EXISTS `street`;
 CREATE TABLE `street` (
   `Street_ID` int(11) NOT NULL,
   `Street_Name` varchar(45) DEFAULT NULL
@@ -833,49 +842,51 @@ INSERT INTO `street` (`Street_ID`, `Street_Name`) VALUES
 -- Table structure for table `suburb`
 --
 
+DROP TABLE IF EXISTS `suburb`;
 CREATE TABLE `suburb` (
   `Suburb_ID` int(11) NOT NULL,
   `Suburb_Name` varchar(45) DEFAULT NULL,
-  `Suburb_ZIP` varchar(45) DEFAULT NULL
+  `Suburb_ZIP` varchar(45) DEFAULT NULL,
+  `City_ID` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `suburb`
 --
 
-INSERT INTO `suburb` (`Suburb_ID`, `Suburb_Name`, `Suburb_ZIP`) VALUES
-(1, 'Bakoven', '8005'),
-(2, 'Bantry Bay', '8005'),
-(3, 'Camps Bay', '8005'),
-(4, 'Clifton', '8005'),
-(5, 'Fresnaye', '8005'),
-(6, 'Green Point', '8005'),
-(7, 'Hout Bay', '7806'),
-(8, 'Imizamo Yethu', '7806'),
-(9, 'Llandudno', '7806'),
-(10, 'Mouille Point', '8005'),
-(11, 'Sea Point', '8005'),
-(12, 'Three Anchor Bay', '8005'),
-(13, 'Athlone', '7764'),
-(14, 'Bishop Lavis', '7490'),
-(15, 'Bonteheuwel', '7764'),
-(16, 'Crawford', '7780'),
-(17, 'Delft', '7100'),
-(18, 'Elsie\'s River', '7490'),
-(19, 'Epping', '7460'),
-(20, 'Grassy Park', '7941'),
-(21, 'Gugulethu', '7750'),
-(22, 'Kalksteenfontein', '7490'),
-(23, 'Khayelitsha', '7784'),
-(24, 'Langa', '7455'),
-(25, 'Lavender Hill', '7945'),
-(26, 'Lotus River', '7941'),
-(27, 'Macassar', '7130'),
-(28, 'Milnerton', '7441'),
-(29, 'Montague Gardens', '7441'),
-(30, 'Parklands', '7441'),
-(31, 'Table View', '7441'),
-(32, 'West Beach', '7441');
+INSERT INTO `suburb` (`Suburb_ID`, `Suburb_Name`, `Suburb_ZIP`, `City_ID`) VALUES
+(1, 'Bakoven', '8005', 1),
+(2, 'Bantry Bay', '8005', 1),
+(3, 'Camps Bay', '8005', 1),
+(4, 'Clifton', '8005', 1),
+(5, 'Fresnaye', '8005', 1),
+(6, 'Green Point', '8005', 1),
+(7, 'Hout Bay', '7806', 1),
+(8, 'Imizamo Yethu', '7806', 1),
+(9, 'Llandudno', '7806', 1),
+(10, 'Mouille Point', '8005', 1),
+(11, 'Sea Point', '8005', 1),
+(12, 'Three Anchor Bay', '8005', 1),
+(13, 'Athlone', '7764', 1),
+(14, 'Bishop Lavis', '7490', 1),
+(15, 'Bonteheuwel', '7764', 1),
+(16, 'Crawford', '7780', 1),
+(17, 'Delft', '7100', 1),
+(18, 'Elsie\'s River', '7490', 1),
+(19, 'Epping', '7460', 1),
+(20, 'Grassy Park', '7941', 1),
+(21, 'Gugulethu', '7750', 1),
+(22, 'Kalksteenfontein', '7490', 1),
+(23, 'Khayelitsha', '7784', 1),
+(24, 'Langa', '7455', 1),
+(25, 'Lavender Hill', '7945', 1),
+(26, 'Lotus River', '7941', 1),
+(27, 'Macassar', '7130', 1),
+(28, 'Milnerton', '7441', 1),
+(29, 'Montague Gardens', '7441', 1),
+(30, 'Parklands', '7441', 1),
+(31, 'Table View', '7441', 1),
+(32, 'West Beach', '7441', 1);
 
 -- --------------------------------------------------------
 
@@ -987,7 +998,8 @@ ALTER TABLE `street`
 --
 ALTER TABLE `suburb`
   ADD PRIMARY KEY (`Suburb_ID`),
-  ADD UNIQUE KEY `Suburb_Name` (`Suburb_Name`);
+  ADD UNIQUE KEY `Suburb_Name` (`Suburb_Name`),
+  ADD KEY `fk_city_id` (`City_ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -1021,7 +1033,7 @@ ALTER TABLE `buyer`
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
-  MODIFY `City_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `City_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `country`
@@ -1135,6 +1147,12 @@ ALTER TABLE `sales`
 --
 ALTER TABLE `seller`
   ADD CONSTRAINT `fk_Seller_Person1` FOREIGN KEY (`Person_Person_ID`) REFERENCES `person` (`Person_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `suburb`
+--
+ALTER TABLE `suburb`
+  ADD CONSTRAINT `fk_city_id` FOREIGN KEY (`City_ID`) REFERENCES `city` (`City_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
