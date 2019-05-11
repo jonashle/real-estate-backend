@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Erstellungszeit: 10. Mai 2019 um 15:35
--- Server-Version: 5.7.24
--- PHP-Version: 7.2.14
+-- Host: localhost
+-- Generation Time: May 10, 2019 at 06:39 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `real_estate`
---
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `address`
+-- Database: `real_estate`
 --
 
 
@@ -34,22 +28,23 @@ CREATE DATABASE IF NOT EXISTS `real_estate`;
 
 USE `real_estate`;
 
-DROP TABLE IF EXISTS `address`;
-CREATE TABLE IF NOT EXISTS `address` (
-  `Address_ID` int(11) NOT NULL AUTO_INCREMENT,
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address`
+--
+
+CREATE TABLE `address` (
+  `Address_ID` int(11) NOT NULL,
   `Street_Street_ID` int(11) NOT NULL,
   `Suburb_Suburb_ID` int(11) NOT NULL,
   `City_City_ID` int(11) NOT NULL,
-  `Country_Country_ID` int(11) NOT NULL,
-  PRIMARY KEY (`Address_ID`),
-  KEY `fk_Address_Street1_idx` (`Street_Street_ID`),
-  KEY `fk_Address_Suburb1_idx` (`Suburb_Suburb_ID`),
-  KEY `fk_Address_City1_idx` (`City_City_ID`),
-  KEY `fk_Address_Country1_idx` (`Country_Country_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
+  `Country_Country_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `address`
+-- Dumping data for table `address`
 --
 
 INSERT INTO `address` (`Address_ID`, `Street_Street_ID`, `Suburb_Suburb_ID`, `City_City_ID`, `Country_Country_ID`) VALUES
@@ -160,19 +155,16 @@ INSERT INTO `address` (`Address_ID`, `Street_Street_ID`, `Suburb_Suburb_ID`, `Ci
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `agent`
+-- Table structure for table `agent`
 --
 
-DROP TABLE IF EXISTS `agent`;
-CREATE TABLE IF NOT EXISTS `agent` (
-  `Agent_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Person_Person_ID` int(11) NOT NULL,
-  PRIMARY KEY (`Agent_ID`),
-  KEY `fk_Agent_Person_idx` (`Person_Person_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+CREATE TABLE `agent` (
+  `Agent_ID` int(11) NOT NULL,
+  `Person_Person_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `agent`
+-- Dumping data for table `agent`
 --
 
 INSERT INTO `agent` (`Agent_ID`, `Person_Person_ID`) VALUES
@@ -191,25 +183,20 @@ INSERT INTO `agent` (`Agent_ID`, `Person_Person_ID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `available`
+-- Table structure for table `available`
 --
 
-DROP TABLE IF EXISTS `available`;
-CREATE TABLE IF NOT EXISTS `available` (
-  `Avail_ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `available` (
+  `Avail_ID` int(11) NOT NULL,
   `Avail_ListingDate` date DEFAULT NULL,
   `Avail_ListingPrice` int(45) DEFAULT NULL,
   `Seller_Seller_ID` int(11) NOT NULL,
   `Agent_Agent_ID` int(11) NOT NULL,
-  `Property_ID` int(11) NOT NULL,
-  PRIMARY KEY (`Avail_ID`),
-  KEY `fk_Available_Seller1_idx` (`Seller_Seller_ID`),
-  KEY `fk_Available_Agent1_idx` (`Agent_Agent_ID`),
-  KEY `fk_Available_Property1` (`Property_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+  `Property_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `available`
+-- Dumping data for table `available`
 --
 
 INSERT INTO `available` (`Avail_ID`, `Avail_ListingDate`, `Avail_ListingPrice`, `Seller_Seller_ID`, `Agent_Agent_ID`, `Property_ID`) VALUES
@@ -234,19 +221,16 @@ INSERT INTO `available` (`Avail_ID`, `Avail_ListingDate`, `Avail_ListingPrice`, 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `buyer`
+-- Table structure for table `buyer`
 --
 
-DROP TABLE IF EXISTS `buyer`;
-CREATE TABLE IF NOT EXISTS `buyer` (
-  `Buyer_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Person_Person_ID` int(11) NOT NULL,
-  PRIMARY KEY (`Buyer_ID`),
-  KEY `fk_Buyer_Person1_idx` (`Person_Person_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+CREATE TABLE `buyer` (
+  `Buyer_ID` int(11) NOT NULL,
+  `Person_Person_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `buyer`
+-- Dumping data for table `buyer`
 --
 
 INSERT INTO `buyer` (`Buyer_ID`, `Person_Person_ID`) VALUES
@@ -314,19 +298,16 @@ INSERT INTO `buyer` (`Buyer_ID`, `Person_Person_ID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `city`
+-- Table structure for table `city`
 --
 
-DROP TABLE IF EXISTS `city`;
-CREATE TABLE IF NOT EXISTS `city` (
-  `City_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `City_Name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`City_ID`),
-  UNIQUE KEY `City_Name` (`City_Name`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+CREATE TABLE `city` (
+  `City_ID` int(11) NOT NULL,
+  `City_Name` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `city`
+-- Dumping data for table `city`
 --
 
 INSERT INTO `city` (`City_ID`, `City_Name`) VALUES
@@ -337,19 +318,16 @@ INSERT INTO `city` (`City_ID`, `City_Name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `country`
+-- Table structure for table `country`
 --
 
-DROP TABLE IF EXISTS `country`;
-CREATE TABLE IF NOT EXISTS `country` (
-  `Country_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Country_Name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`Country_ID`),
-  UNIQUE KEY `Country_Name` (`Country_Name`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+CREATE TABLE `country` (
+  `Country_ID` int(11) NOT NULL,
+  `Country_Name` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `country`
+-- Dumping data for table `country`
 --
 
 INSERT INTO `country` (`Country_ID`, `Country_Name`) VALUES
@@ -359,24 +337,21 @@ INSERT INTO `country` (`Country_ID`, `Country_Name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `person`
+-- Table structure for table `person`
 --
 
-DROP TABLE IF EXISTS `person`;
-CREATE TABLE IF NOT EXISTS `person` (
-  `Person_ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `person` (
+  `Person_ID` int(11) NOT NULL,
   `Address_Address_ID` int(11) NOT NULL,
   `Person_Firstname` varchar(45) DEFAULT NULL,
   `Person_LastName` varchar(45) DEFAULT NULL,
   `Person_PhoneNumber` varchar(45) DEFAULT NULL,
   `Person_Email` varchar(60) DEFAULT NULL,
-  `Person_DOB` date DEFAULT NULL,
-  PRIMARY KEY (`Person_ID`),
-  KEY `fk_Person_Address1_idx` (`Address_Address_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
+  `Person_DOB` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `person`
+-- Dumping data for table `person`
 --
 
 INSERT INTO `person` (`Person_ID`, `Address_Address_ID`, `Person_Firstname`, `Person_LastName`, `Person_PhoneNumber`, `Person_Email`, `Person_DOB`) VALUES
@@ -485,24 +460,21 @@ INSERT INTO `person` (`Person_ID`, `Address_Address_ID`, `Person_Firstname`, `Pe
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `property`
+-- Table structure for table `property`
 --
 
-DROP TABLE IF EXISTS `property`;
-CREATE TABLE IF NOT EXISTS `property` (
-  `Prop_ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `property` (
+  `Prop_ID` int(11) NOT NULL,
   `Prop_Description` varchar(45) DEFAULT NULL,
   `Prop_Bedrooms` varchar(45) DEFAULT NULL,
   `Prop_Bathrooms` varchar(45) DEFAULT NULL,
   `Prop_SquareMeter` varchar(45) DEFAULT NULL,
   `Address_Address_ID` int(11) NOT NULL,
-  `Prop_Pool` tinyint(1) NOT NULL,
-  PRIMARY KEY (`Prop_ID`),
-  KEY `address` (`Address_Address_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
+  `Prop_Pool` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `property`
+-- Dumping data for table `property`
 --
 
 INSERT INTO `property` (`Prop_ID`, `Prop_Description`, `Prop_Bedrooms`, `Prop_Bathrooms`, `Prop_SquareMeter`, `Address_Address_ID`, `Prop_Pool`) VALUES
@@ -612,60 +584,72 @@ INSERT INTO `property` (`Prop_ID`, `Prop_Description`, `Prop_Bedrooms`, `Prop_Ba
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `propertyphoto`
+-- Stand-in structure for view `propertyDetails`
+-- (See below for the actual view)
 --
-
-DROP TABLE IF EXISTS `propertyphoto`;
-CREATE TABLE IF NOT EXISTS `propertyphoto` (
-  `Property_Prop_ID` int(11) NOT NULL,
-  `Photo_Path` varchar(200) NOT NULL,
-  PRIMARY KEY (`Property_Prop_ID`,`Photo_Path`) USING BTREE,
-  KEY `fk_PropertyPhoto_Property1_idx` (`Property_Prop_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Daten für Tabelle `propertyphoto`
---
-
-INSERT INTO `propertyphoto` (`Property_Prop_ID`, `Photo_Path`) VALUES
-(1, 'localhost\\real_estate\\photos\\Tiger Waterfront\\185741377.jpg'),
-(1, 'localhost\\real_estate\\photos\\Tiger Waterfront\\185742210.jpg'),
-(1, 'localhost\\real_estate\\photos\\Tiger Waterfront\\194689370.jpg'),
-(1, 'localhost\\real_estate\\photos\\Tiger Waterfront\\194689575.jpg'),
-(101, 'localhost\\real_estate\\photos\\First House Westcamp Villa\\167497237.jpg'),
-(101, 'localhost\\real_estate\\photos\\First House Westcamp Villa\\167497263.jpg'),
-(101, 'localhost\\real_estate\\photos\\First House Westcamp Villa\\167497292.jpg'),
-(101, 'localhost\\real_estate\\photos\\First House Westcamp Villa\\167497303.jpg'),
-(102, 'localhost\\real_estate\\photos\\Ashby Manor\\115271712.jpg'),
-(102, 'localhost\\real_estate\\photos\\Ashby Manor\\138061763.jpg'),
-(102, 'localhost\\real_estate\\photos\\Ashby Manor\\175800834.jpg'),
-(102, 'localhost\\real_estate\\photos\\Ashby Manor\\182499819.jpg');
+CREATE TABLE `propertyDetails` (
+`Prop_ID` int(11)
+,`Prop_Description` varchar(45)
+,`Prop_Bedrooms` varchar(45)
+,`Prop_Bathrooms` varchar(45)
+,`Prop_SquareMeter` varchar(45)
+,`Prop_Pool` tinyint(1)
+,`Address_Address_ID` int(11)
+,`Country_Name` varchar(45)
+,`City_Name` varchar(45)
+,`Suburb_Name` varchar(45)
+,`Street_Name` varchar(45)
+,`Photo_Path` varchar(200)
+);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `sales`
+-- Table structure for table `propertyphoto`
 --
 
-DROP TABLE IF EXISTS `sales`;
-CREATE TABLE IF NOT EXISTS `sales` (
-  `Sale_ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `propertyphoto` (
+  `Property_Prop_ID` int(11) NOT NULL,
+  `Photo_Path` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `propertyphoto`
+--
+
+INSERT INTO `propertyphoto` (`Property_Prop_ID`, `Photo_Path`) VALUES
+(1, '/photos/TigerWaterfront/185741377.jpg'),
+(1, '/photos/TigerWaterfront/185742210.jpg'),
+(1, '/photos/TigerWaterfront/194689370.jpg'),
+(1, '/photos/TigerWaterfront/194689575.jpg'),
+(101, '/photos/FirstHouse WestcampVilla/167497237.jpg'),
+(101, '/photos/FirstHouse WestcampVilla/167497263.jpg'),
+(101, '/photos/FirstHouse WestcampVilla/167497292.jpg'),
+(101, '/photos/FirstHouse WestcampVilla/167497303.jpg'),
+(102, '/photos/AshbyManor/115271712.jpg'),
+(102, '/photos/AshbyManor/138061763.jpg'),
+(102, '/photos/AshbyManor/175800834.jpg'),
+(102, '/photos/AshbyManor/182499819.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales`
+--
+
+CREATE TABLE `sales` (
+  `Sale_ID` int(11) NOT NULL,
   `Agent_Agent_ID` int(11) NOT NULL,
   `Buyer_Buyer_ID` int(11) NOT NULL,
   `Property_Prop_ID` int(11) NOT NULL,
   `Sale_Amount` varchar(45) DEFAULT NULL,
   `Sale_Percentage` varchar(45) DEFAULT NULL,
   `Sale_Date` date DEFAULT NULL,
-  `Sales_TimeOnMarket` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`Sale_ID`),
-  KEY `fk_Sales_Agent1_idx` (`Agent_Agent_ID`),
-  KEY `fk_Sales_Buyer1_idx` (`Buyer_Buyer_ID`),
-  KEY `fk_Sales_Property1_idx` (`Property_Prop_ID`),
-  KEY `Sale_ID` (`Sale_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+  `Sales_TimeOnMarket` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `sales`
+-- Dumping data for table `sales`
 --
 
 INSERT INTO `sales` (`Sale_ID`, `Agent_Agent_ID`, `Buyer_Buyer_ID`, `Property_Prop_ID`, `Sale_Amount`, `Sale_Percentage`, `Sale_Date`, `Sales_TimeOnMarket`) VALUES
@@ -698,19 +682,16 @@ INSERT INTO `sales` (`Sale_ID`, `Agent_Agent_ID`, `Buyer_Buyer_ID`, `Property_Pr
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `seller`
+-- Table structure for table `seller`
 --
 
-DROP TABLE IF EXISTS `seller`;
-CREATE TABLE IF NOT EXISTS `seller` (
-  `Seller_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Person_Person_ID` int(11) NOT NULL,
-  PRIMARY KEY (`Seller_ID`),
-  KEY `fk_Seller_Person1_idx` (`Person_Person_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+CREATE TABLE `seller` (
+  `Seller_ID` int(11) NOT NULL,
+  `Person_Person_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `seller`
+-- Dumping data for table `seller`
 --
 
 INSERT INTO `seller` (`Seller_ID`, `Person_Person_ID`) VALUES
@@ -748,18 +729,16 @@ INSERT INTO `seller` (`Seller_ID`, `Person_Person_ID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `street`
+-- Table structure for table `street`
 --
 
-DROP TABLE IF EXISTS `street`;
-CREATE TABLE IF NOT EXISTS `street` (
-  `Street_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Street_Name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`Street_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
+CREATE TABLE `street` (
+  `Street_ID` int(11) NOT NULL,
+  `Street_Name` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `street`
+-- Dumping data for table `street`
 --
 
 INSERT INTO `street` (`Street_ID`, `Street_Name`) VALUES
@@ -850,20 +829,17 @@ INSERT INTO `street` (`Street_ID`, `Street_Name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `suburb`
+-- Table structure for table `suburb`
 --
 
-DROP TABLE IF EXISTS `suburb`;
-CREATE TABLE IF NOT EXISTS `suburb` (
-  `Suburb_ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `suburb` (
+  `Suburb_ID` int(11) NOT NULL,
   `Suburb_Name` varchar(45) DEFAULT NULL,
-  `Suburb_ZIP` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`Suburb_ID`),
-  UNIQUE KEY `Suburb_Name` (`Suburb_Name`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+  `Suburb_ZIP` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `suburb`
+-- Dumping data for table `suburb`
 --
 
 INSERT INTO `suburb` (`Suburb_ID`, `Suburb_Name`, `Suburb_ZIP`) VALUES
@@ -900,12 +876,199 @@ INSERT INTO `suburb` (`Suburb_ID`, `Suburb_Name`, `Suburb_ZIP`) VALUES
 (31, 'Table View', '7441'),
 (32, 'West Beach', '7441');
 
+-- --------------------------------------------------------
+
 --
--- Constraints der exportierten Tabellen
+-- Structure for view `propertyDetails`
+--
+DROP TABLE IF EXISTS `propertyDetails`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `propertyDetails`  AS  (select `property`.`Prop_ID` AS `Prop_ID`,`property`.`Prop_Description` AS `Prop_Description`,`property`.`Prop_Bedrooms` AS `Prop_Bedrooms`,`property`.`Prop_Bathrooms` AS `Prop_Bathrooms`,`property`.`Prop_SquareMeter` AS `Prop_SquareMeter`,`property`.`Prop_Pool` AS `Prop_Pool`,`property`.`Address_Address_ID` AS `Address_Address_ID`,`country`.`Country_Name` AS `Country_Name`,`city`.`City_Name` AS `City_Name`,`suburb`.`Suburb_Name` AS `Suburb_Name`,`street`.`Street_Name` AS `Street_Name`,`propertyphoto`.`Photo_Path` AS `Photo_Path` from ((((((`property` join `address` on((`property`.`Address_Address_ID` = `address`.`Address_ID`))) join `country` on((`address`.`Country_Country_ID` = `country`.`Country_ID`))) join `city` on((`address`.`City_City_ID` = `city`.`City_ID`))) join `suburb` on((`address`.`Suburb_Suburb_ID` = `suburb`.`Suburb_ID`))) join `street` on((`address`.`Street_Street_ID` = `street`.`Street_ID`))) left join `propertyphoto` on((`property`.`Prop_ID` = `propertyphoto`.`Property_Prop_ID`))) group by `property`.`Prop_ID`) ;
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Constraints der Tabelle `address`
+-- Indexes for table `address`
+--
+ALTER TABLE `address`
+  ADD PRIMARY KEY (`Address_ID`),
+  ADD KEY `fk_Address_Street1_idx` (`Street_Street_ID`),
+  ADD KEY `fk_Address_Suburb1_idx` (`Suburb_Suburb_ID`),
+  ADD KEY `fk_Address_City1_idx` (`City_City_ID`),
+  ADD KEY `fk_Address_Country1_idx` (`Country_Country_ID`);
+
+--
+-- Indexes for table `agent`
+--
+ALTER TABLE `agent`
+  ADD PRIMARY KEY (`Agent_ID`),
+  ADD KEY `fk_Agent_Person_idx` (`Person_Person_ID`);
+
+--
+-- Indexes for table `available`
+--
+ALTER TABLE `available`
+  ADD PRIMARY KEY (`Avail_ID`),
+  ADD KEY `fk_Available_Seller1_idx` (`Seller_Seller_ID`),
+  ADD KEY `fk_Available_Agent1_idx` (`Agent_Agent_ID`),
+  ADD KEY `fk_Available_Property1` (`Property_ID`);
+
+--
+-- Indexes for table `buyer`
+--
+ALTER TABLE `buyer`
+  ADD PRIMARY KEY (`Buyer_ID`),
+  ADD KEY `fk_Buyer_Person1_idx` (`Person_Person_ID`);
+
+--
+-- Indexes for table `city`
+--
+ALTER TABLE `city`
+  ADD PRIMARY KEY (`City_ID`),
+  ADD UNIQUE KEY `City_Name` (`City_Name`);
+
+--
+-- Indexes for table `country`
+--
+ALTER TABLE `country`
+  ADD PRIMARY KEY (`Country_ID`),
+  ADD UNIQUE KEY `Country_Name` (`Country_Name`);
+
+--
+-- Indexes for table `person`
+--
+ALTER TABLE `person`
+  ADD PRIMARY KEY (`Person_ID`),
+  ADD KEY `fk_Person_Address1_idx` (`Address_Address_ID`);
+
+--
+-- Indexes for table `property`
+--
+ALTER TABLE `property`
+  ADD PRIMARY KEY (`Prop_ID`),
+  ADD KEY `address` (`Address_Address_ID`);
+
+--
+-- Indexes for table `propertyphoto`
+--
+ALTER TABLE `propertyphoto`
+  ADD PRIMARY KEY (`Property_Prop_ID`,`Photo_Path`) USING BTREE,
+  ADD KEY `fk_PropertyPhoto_Property1_idx` (`Property_Prop_ID`);
+
+--
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`Sale_ID`),
+  ADD KEY `fk_Sales_Agent1_idx` (`Agent_Agent_ID`),
+  ADD KEY `fk_Sales_Buyer1_idx` (`Buyer_Buyer_ID`),
+  ADD KEY `fk_Sales_Property1_idx` (`Property_Prop_ID`),
+  ADD KEY `Sale_ID` (`Sale_ID`);
+
+--
+-- Indexes for table `seller`
+--
+ALTER TABLE `seller`
+  ADD PRIMARY KEY (`Seller_ID`),
+  ADD KEY `fk_Seller_Person1_idx` (`Person_Person_ID`);
+
+--
+-- Indexes for table `street`
+--
+ALTER TABLE `street`
+  ADD PRIMARY KEY (`Street_ID`);
+
+--
+-- Indexes for table `suburb`
+--
+ALTER TABLE `suburb`
+  ADD PRIMARY KEY (`Suburb_ID`),
+  ADD UNIQUE KEY `Suburb_Name` (`Suburb_Name`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `address`
+--
+ALTER TABLE `address`
+  MODIFY `Address_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+
+--
+-- AUTO_INCREMENT for table `agent`
+--
+ALTER TABLE `agent`
+  MODIFY `Agent_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `available`
+--
+ALTER TABLE `available`
+  MODIFY `Avail_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `buyer`
+--
+ALTER TABLE `buyer`
+  MODIFY `Buyer_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
+--
+-- AUTO_INCREMENT for table `city`
+--
+ALTER TABLE `city`
+  MODIFY `City_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `country`
+--
+ALTER TABLE `country`
+  MODIFY `Country_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `person`
+--
+ALTER TABLE `person`
+  MODIFY `Person_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+
+--
+-- AUTO_INCREMENT for table `property`
+--
+ALTER TABLE `property`
+  MODIFY `Prop_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+
+--
+-- AUTO_INCREMENT for table `sales`
+--
+ALTER TABLE `sales`
+  MODIFY `Sale_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `seller`
+--
+ALTER TABLE `seller`
+  MODIFY `Seller_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `street`
+--
+ALTER TABLE `street`
+  MODIFY `Street_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+
+--
+-- AUTO_INCREMENT for table `suburb`
+--
+ALTER TABLE `suburb`
+  MODIFY `Suburb_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `address`
 --
 ALTER TABLE `address`
   ADD CONSTRAINT `fk_Address_City1` FOREIGN KEY (`City_City_ID`) REFERENCES `city` (`City_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -914,13 +1077,13 @@ ALTER TABLE `address`
   ADD CONSTRAINT `fk_Address_Suburb1` FOREIGN KEY (`Suburb_Suburb_ID`) REFERENCES `suburb` (`Suburb_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints der Tabelle `agent`
+-- Constraints for table `agent`
 --
 ALTER TABLE `agent`
   ADD CONSTRAINT `fk_Agent_Person` FOREIGN KEY (`Person_Person_ID`) REFERENCES `person` (`Person_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints der Tabelle `available`
+-- Constraints for table `available`
 --
 ALTER TABLE `available`
   ADD CONSTRAINT `fk_Available_Agent1` FOREIGN KEY (`Agent_Agent_ID`) REFERENCES `agent` (`Agent_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -928,31 +1091,31 @@ ALTER TABLE `available`
   ADD CONSTRAINT `fk_Available_Seller1` FOREIGN KEY (`Seller_Seller_ID`) REFERENCES `seller` (`Seller_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints der Tabelle `buyer`
+-- Constraints for table `buyer`
 --
 ALTER TABLE `buyer`
   ADD CONSTRAINT `fk_Buyer_Person1` FOREIGN KEY (`Person_Person_ID`) REFERENCES `person` (`Person_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints der Tabelle `person`
+-- Constraints for table `person`
 --
 ALTER TABLE `person`
   ADD CONSTRAINT `fk_Person_Address1` FOREIGN KEY (`Address_Address_ID`) REFERENCES `address` (`Address_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints der Tabelle `property`
+-- Constraints for table `property`
 --
 ALTER TABLE `property`
   ADD CONSTRAINT `address` FOREIGN KEY (`Address_Address_ID`) REFERENCES `address` (`Address_ID`);
 
 --
--- Constraints der Tabelle `propertyphoto`
+-- Constraints for table `propertyphoto`
 --
 ALTER TABLE `propertyphoto`
   ADD CONSTRAINT `fk_PropertyPhoto_Property1` FOREIGN KEY (`Property_Prop_ID`) REFERENCES `property` (`Prop_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints der Tabelle `sales`
+-- Constraints for table `sales`
 --
 ALTER TABLE `sales`
   ADD CONSTRAINT `fk_Sales_Agent1` FOREIGN KEY (`Agent_Agent_ID`) REFERENCES `agent` (`Agent_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -960,7 +1123,7 @@ ALTER TABLE `sales`
   ADD CONSTRAINT `fk_Sales_Property1` FOREIGN KEY (`Property_Prop_ID`) REFERENCES `property` (`Prop_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints der Tabelle `seller`
+-- Constraints for table `seller`
 --
 ALTER TABLE `seller`
   ADD CONSTRAINT `fk_Seller_Person1` FOREIGN KEY (`Person_Person_ID`) REFERENCES `person` (`Person_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;

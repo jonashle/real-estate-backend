@@ -7,14 +7,13 @@ include("../connection.php");
 
 $sql = "SELECT * FROM city";
 $result = $conn->query($sql);
-$jsonarray=array();
 
 if ($result->num_rows > 0) {
     // output data of each row
 	while($arrayresult = mysqli_fetch_array($result)) {
        $myArray[] = array(
-                        "City_ID"=>$arrayresult['City_ID'],
-			"City_Name"=>$arrayresult['City_Name'],
+                        "id"=>$arrayresult['City_ID'],
+			"name"=>$arrayresult['City_Name'],
                                            );
     }
 	// set response code - 200 OK
@@ -24,7 +23,7 @@ if ($result->num_rows > 0) {
 } else {
 // set response code - 404 Not found
     http_response_code(404);
- 
+
     // tell the user no products found
     echo json_encode(
         array("message" => "No properties found.")

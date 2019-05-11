@@ -8,8 +8,7 @@ set envrioment variable 'mysql_password' to the password for your root mysql use
 
 ### Prerequisites
 
-PHP > 7
-
+PHP
 MySQL
 
 # start PHP application server
