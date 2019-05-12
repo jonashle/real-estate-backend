@@ -9,3 +9,10 @@ id
 street number
 street name
 suburb id
+
+
+// ??
+    address on person?
+    roles on person?
+
+    add explicit ID on every table

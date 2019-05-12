@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 11, 2019 at 06:25 PM
+-- Generation Time: May 11, 2019 at 08:59 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -744,97 +744,98 @@ INSERT INTO `seller` (`Seller_ID`, `Person_Person_ID`) VALUES
 DROP TABLE IF EXISTS `street`;
 CREATE TABLE `street` (
   `Street_ID` int(11) NOT NULL,
-  `Street_Name` varchar(45) DEFAULT NULL
+  `Street_Name` varchar(45) DEFAULT NULL,
+  `Suburb_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `street`
 --
 
-INSERT INTO `street` (`Street_ID`, `Street_Name`) VALUES
-(1, '103 Et, Avenue'),
-(2, '3865 Aptent St.'),
-(3, '1290 Dictum Rd.'),
-(4, '5486 Laoreet Avenue'),
-(5, '5628 Imperdiet Rd.'),
-(6, '690-2677 Neque Street'),
-(7, 'Ap #859-6571 Donec Street'),
-(8, '6194 Mauris Rd.'),
-(9, '4570 Magna Avenue'),
-(10, 'Ap #617-2953 Sit St.'),
-(11, '798-9214 Vel Rd.'),
-(12, 'Ap #621-3272 Amet, Rd.'),
-(13, '8557 Nunc Avenue'),
-(14, '265 Aliquam St.'),
-(15, 'Ap #792-1649 Mollis Rd.'),
-(16, 'Ap #693-9462 Phasellus Street'),
-(17, '251-5270 Sem Street'),
-(18, '586-2587 Donec Road'),
-(19, 'Ap #371-8430 Cursus. Street'),
-(20, 'Ap #633-2033 Magna St.'),
-(21, 'Ap #593-416 Dis Ave'),
-(22, '704 Egestas Rd.'),
-(23, '7236 Eget, Road'),
-(24, 'Ap #108-5978 Vestibulum St.'),
-(25, 'Ap #923-8149 Dictum St.'),
-(26, '550-2101 Cras Rd.'),
-(27, 'Ap #395-1579 Aliquet Ave'),
-(28, '7358 Parturient Road'),
-(29, '897-5390 Risus. Avenue'),
-(30, 'Ap #114-4922 Posuere, Ave'),
-(31, 'Ap #276-8353 Lacus. Road'),
-(32, 'Ap #303-2819 Parturient Road'),
-(33, '888-898 Ullamcorper. St.'),
-(34, '2881 Et Av.'),
-(35, '590-5365 Sed St.'),
-(36, '443-3676 Varius Road'),
-(37, '809-4966 Ac Road'),
-(38, 'Ap #259-3387 Ornare, Road'),
-(39, '3005 A, Ave'),
-(40, '382-1395 Consequat Street'),
-(41, 'Ap #279-6194 Eget Street'),
-(42, '584-1649 Eget St.'),
-(43, '287-2383 Aliquet. Rd.'),
-(44, '173-8466 Mauris Av.'),
-(45, 'Ap #408-5504 Egestas St.'),
-(46, '145-3560 Euismod Road'),
-(47, 'Ap #502-6357 Nulla Road'),
-(48, '865-4513 Egestas. Av.'),
-(49, '216-6804 Sit Road'),
-(50, '836-2841 Egestas St.'),
-(51, 'Ap #844-8850 Eleifend, St.'),
-(52, '6377 Sodales Ave'),
-(53, '958-4018 Donec St.'),
-(54, 'Ap #368-3536 Vitae St.'),
-(55, '191 Auctor St.'),
-(56, '9799 Magnis Road'),
-(57, '459-8509 Eget St.'),
-(58, '3199 Sapien Road'),
-(59, 'Ap #705-1836 Ultricies Road'),
-(60, 'Ap #460-9787 Eget St.'),
-(61, '8967 Proin St.'),
-(62, 'Ap #620-9140 Fusce Road'),
-(63, '4009 Nam Ave'),
-(64, '866-3297 Malesuada Street'),
-(65, '5638 Ac Street'),
-(66, '697-7839 Nec, Street'),
-(67, '6586 Iaculis Street'),
-(68, '800 Suspendisse Av.'),
-(69, 'Ap #922-4903 Duis Road'),
-(70, '1683 Posuere St.'),
-(71, '6321 Ultricies St.'),
-(72, '331-6870 Sed Ave'),
-(73, '842 Nullam Rd.'),
-(74, '948 Vel, Rd.'),
-(75, 'lane'),
-(76, 'lane'),
-(77, 'lane'),
-(78, 'lane'),
-(79, 'lane'),
-(80, 'lane'),
-(81, 'lane'),
-(82, 'lane'),
-(83, 'lane');
+INSERT INTO `street` (`Street_ID`, `Street_Name`, `Suburb_ID`) VALUES
+(1, '103 Et, Avenue', 1),
+(2, '3865 Aptent St.', 1),
+(3, '1290 Dictum Rd.', 1),
+(4, '5486 Laoreet Avenue', 1),
+(5, '5628 Imperdiet Rd.', 1),
+(6, '690-2677 Neque Street', 1),
+(7, 'Ap #859-6571 Donec Street', 1),
+(8, '6194 Mauris Rd.', 1),
+(9, '4570 Magna Avenue', 1),
+(10, 'Ap #617-2953 Sit St.', 1),
+(11, '798-9214 Vel Rd.', 1),
+(12, 'Ap #621-3272 Amet, Rd.', 1),
+(13, '8557 Nunc Avenue', 1),
+(14, '265 Aliquam St.', 1),
+(15, 'Ap #792-1649 Mollis Rd.', 1),
+(16, 'Ap #693-9462 Phasellus Street', 1),
+(17, '251-5270 Sem Street', 1),
+(18, '586-2587 Donec Road', 1),
+(19, 'Ap #371-8430 Cursus. Street', 1),
+(20, 'Ap #633-2033 Magna St.', 1),
+(21, 'Ap #593-416 Dis Ave', 1),
+(22, '704 Egestas Rd.', 1),
+(23, '7236 Eget, Road', 1),
+(24, 'Ap #108-5978 Vestibulum St.', 1),
+(25, 'Ap #923-8149 Dictum St.', 1),
+(26, '550-2101 Cras Rd.', 1),
+(27, 'Ap #395-1579 Aliquet Ave', 1),
+(28, '7358 Parturient Road', 1),
+(29, '897-5390 Risus. Avenue', 1),
+(30, 'Ap #114-4922 Posuere, Ave', 1),
+(31, 'Ap #276-8353 Lacus. Road', 1),
+(32, 'Ap #303-2819 Parturient Road', 1),
+(33, '888-898 Ullamcorper. St.', 1),
+(34, '2881 Et Av.', 1),
+(35, '590-5365 Sed St.', 1),
+(36, '443-3676 Varius Road', 1),
+(37, '809-4966 Ac Road', 1),
+(38, 'Ap #259-3387 Ornare, Road', 1),
+(39, '3005 A, Ave', 1),
+(40, '382-1395 Consequat Street', 1),
+(41, 'Ap #279-6194 Eget Street', 1),
+(42, '584-1649 Eget St.', 1),
+(43, '287-2383 Aliquet. Rd.', 1),
+(44, '173-8466 Mauris Av.', 1),
+(45, 'Ap #408-5504 Egestas St.', 1),
+(46, '145-3560 Euismod Road', 1),
+(47, 'Ap #502-6357 Nulla Road', 1),
+(48, '865-4513 Egestas. Av.', 1),
+(49, '216-6804 Sit Road', 1),
+(50, '836-2841 Egestas St.', 1),
+(51, 'Ap #844-8850 Eleifend, St.', 1),
+(52, '6377 Sodales Ave', 1),
+(53, '958-4018 Donec St.', 1),
+(54, 'Ap #368-3536 Vitae St.', 1),
+(55, '191 Auctor St.', 1),
+(56, '9799 Magnis Road', 1),
+(57, '459-8509 Eget St.', 1),
+(58, '3199 Sapien Road', 1),
+(59, 'Ap #705-1836 Ultricies Road', 1),
+(60, 'Ap #460-9787 Eget St.', 1),
+(61, '8967 Proin St.', 1),
+(62, 'Ap #620-9140 Fusce Road', 1),
+(63, '4009 Nam Ave', 1),
+(64, '866-3297 Malesuada Street', 1),
+(65, '5638 Ac Street', 1),
+(66, '697-7839 Nec, Street', 1),
+(67, '6586 Iaculis Street', 1),
+(68, '800 Suspendisse Av.', 1),
+(69, 'Ap #922-4903 Duis Road', 1),
+(70, '1683 Posuere St.', 1),
+(71, '6321 Ultricies St.', 1),
+(72, '331-6870 Sed Ave', 1),
+(73, '842 Nullam Rd.', 1),
+(74, '948 Vel, Rd.', 1),
+(75, 'lane', 1),
+(76, 'lane', 1),
+(77, 'lane', 1),
+(78, 'lane', 1),
+(79, 'lane', 1),
+(80, 'lane', 1),
+(81, 'lane', 1),
+(82, 'lane', 1),
+(83, 'lane', 1);
 
 -- --------------------------------------------------------
 
@@ -991,7 +992,8 @@ ALTER TABLE `seller`
 -- Indexes for table `street`
 --
 ALTER TABLE `street`
-  ADD PRIMARY KEY (`Street_ID`);
+  ADD PRIMARY KEY (`Street_ID`),
+  ADD KEY `fk_suburb_id` (`Suburb_ID`);
 
 --
 -- Indexes for table `suburb`
@@ -1147,6 +1149,12 @@ ALTER TABLE `sales`
 --
 ALTER TABLE `seller`
   ADD CONSTRAINT `fk_Seller_Person1` FOREIGN KEY (`Person_Person_ID`) REFERENCES `person` (`Person_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `street`
+--
+ALTER TABLE `street`
+  ADD CONSTRAINT `fk_suburb_id` FOREIGN KEY (`Suburb_ID`) REFERENCES `street` (`Street_ID`);
 
 --
 -- Constraints for table `suburb`
