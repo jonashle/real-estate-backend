@@ -22,20 +22,21 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 include("../../connection.php");
 
-$sql = "SELECT available.Avail_ID,street.Street_Name,suburb.Suburb_Name,suburb.Suburb_ZIP,city.City_Name,country.Country_Name FROM	(((((available
-INNER JOIN property  
-ON available.Property_ID=property.Prop_ID)
+$sql = "SELECT available.Avail_ID,street.Street_Name,suburb.Suburb_Name,suburb.Suburb_ZIP,city.City_Name,country.Country_Name 
+FROM (((((available 
+INNER JOIN property 
+ON available.Property_ID=property.Prop_ID) 
 INNER JOIN address 
-ON property.Address_Address_ID = address.Address_ID)
-INNER JOIN country
-ON country.Country_ID=address.Country_Country_ID)
-INNER JOIN city
-ON city.City_ID =address.City_City_ID)
-INNER JOIN suburb
-ON suburb.Suburb_ID=address.Suburb_Suburb_ID)
-INNER JOIN street
-ON street.Street_ID=address.Street_Street_ID
-WHERE suburb.suburb_Name=\"".$suburb."\" AND property.Prop_Bedrooms>".$bedroom." AND property.Prop_Pool=".$pool;
+ON property.Address_Address_ID = address.Address_ID) 
+INNER JOIN street 
+ON street.Street_ID=address.Street_Street_ID) 
+INNER JOIN suburb 
+ON suburb.Suburb_ID =street.Suburb_Suburb_ID) 
+INNER JOIN city 
+ON city.City_ID=suburb.City_ID) 
+INNER JOIN country 
+ON city.Country_ID=country.Country_ID 
+WHERE suburb.suburb_Name= ".$suburb." AND property.Prop_Bedrooms > ".$bedroom." AND property.Prop_Pool= ".$pool;
 
 echo $sql;
 $result = $conn->query($sql);
